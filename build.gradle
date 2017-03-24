@@ -28,7 +28,7 @@ jar {
 
 
 springBoot {
-    mainClass = 'poc.logging.Application'
+    mainClass = 'com.logging.Application'
 }
 
 sourceCompatibility = 1.8
