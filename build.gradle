@@ -1,0 +1,57 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.2.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven { url "http://repo.spring.io/libs-release" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+group 'poc.logging'
+version '1.0-SNAPSHOT'
+description 'poc-logging-server'
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'poc-logging-server'
+    version = '1.0-SNAPSHOT'
+}
+
+
+springBoot {
+    mainClass = 'poc.logging.Application'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+    maven { url "http://repo.spring.io/libs-release" }
+}
+
+ext {
+    springBootVersion = '1.5.2.RELEASE'
+}
+
+dependencies {
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web') {
+        exclude module: 'spring-boot-starter-tomcat'
+    }
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
+
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+}
